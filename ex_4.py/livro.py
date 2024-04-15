@@ -83,5 +83,4 @@ class Livro:
         for capitulo in self.__capitulos:
             if capitulo.titulo == titulo:
                 return capitulo
-            else:
-                return None
+        return None
