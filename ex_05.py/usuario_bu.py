@@ -3,8 +3,10 @@ from abc import ABC, abstractmethod
 class UsuarioBU(ABC):
     @abstractmethod
     def __init__(self, cpf: int, dias_de_emprestimo: int):
-        self.__cpf = cpf
-        self.__dias_de_emprestimo = dias_de_emprestimo
+        if isinstance(cpf, int):
+            self.__cpf = cpf
+        if isinstance(cpf, int):
+            self.__dias_de_emprestimo = dias_de_emprestimo
     
     @property
     def cpf(self):
@@ -23,7 +25,7 @@ class UsuarioBU(ABC):
         self.__dias_de_emprestimo = dias_de_emprestimo
     
     def emprestar(self, titulo_livro: str):
-        return " pegou emprestado o livro: " + titulo_livro
+        return " pegou emprestado o livro: " + titulo_livro + ' com ' + str(self.dias_de_emprestimo) + " dias de prazo"
     
     def devolver(self, titulo_livro: str):
-        return " devolveu o livro: " + titulo_livro
+        return ' devolveu o livro: ' + titulo_livro

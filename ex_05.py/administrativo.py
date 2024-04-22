@@ -8,8 +8,10 @@ class Administrativo(Funcionario):
 
     
     def emprestar(self, titulo_livro: str):
-        return 'Funcionario administrativo do departamento "' + self.departamento + '" pegou emprestado o livro: ' + titulo_livro + ' com ' + str(self.dias_de_emprestimo) + " dias de prazo"
+        return 'Administrativo ' + super().emprestar(titulo_livro)
 
     def devolver(self, titulo_livro: str):
-        return 'Funcionario administrativo do departamento "' + self.departamento  + '" devolveu o livro: ' + titulo_livro
+        return 'Administrativo ' + super().devolver(titulo_livro)
 
+p1 = Administrativo("CTC", 15615)
+print(p1.emprestar("Love"))

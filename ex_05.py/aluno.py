@@ -16,7 +16,7 @@ class Aluno(UsuarioBU, ABC):
         self.__matricula = matricula
     
     def emprestar(self, titulo_livro: str):
-        return 'Aluno de matricula "' + str(self.matricula) + '" pegou emprestado o livro: ' + titulo_livro + ' com ' + str(self.dias_de_emprestimo) + ' dias de prazo'    
+        return 'Aluno de matricula ' + '"' + str(self.matricula) + '"' + super().emprestar(titulo_livro)
     
     def devolver(self, titulo_livro: str):
-        return 'Aluno de matricula "' + str(self.matricula) + '" devolveu o livro: ' + titulo_livro
+        return 'Aluno de matricula "' + str(self.matricula) + super().devolver(titulo_livro)

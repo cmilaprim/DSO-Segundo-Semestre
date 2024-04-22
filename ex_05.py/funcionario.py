@@ -16,8 +16,8 @@ class Funcionario(UsuarioBU, ABC):
         self.__departamento = departamento
     
     def emprestar(self, titulo_livro: str):
-        return ' do departamento "' + self.departamento  + '" pegou emprestado o livro: ' + titulo_livro + ' com ' + str(self.dias_de_emprestimo) + " dias de prazo"
+        return ' do departamento ' + '"' +  self.departamento  + '"' +  super().emprestar(titulo_livro) 
         
 
     def devolver(self, titulo_livro: str):
-        return 'Funciorio do departamento "' + self.departamento + '" devolveu o livro: ' + titulo_livro
+        return ' do departamento ' + '"' + self.departamento + '"' +  super().devolver(titulo_livro)
