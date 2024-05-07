@@ -2,10 +2,9 @@ from imposto import Imposto
 from ipi import IPI
 from icms import ICMS
 from iss import ISS
-from irpj import IRPJ
 
 
-class Empresa():
+class Empresa:
     def __init__(self, cnpj: int, nome_de_fantasia: str):
         self.__cpnj = cnpj
         self.__nome_de_fantasia = nome_de_fantasia
@@ -20,7 +19,8 @@ class Empresa():
 
     @nome_de_fantasia.setter
     def nome_de_fantasia(self, nome_de_fantasia):
-        self.__nome_de_fantasia = nome_de_fantasia
+        if isinstance(nome_de_fantasia, str):
+            self.__nome_de_fantasia = nome_de_fantasia
 
     @property
     def impostos(self):
@@ -54,25 +54,25 @@ class Empresa():
 
     def faturamento_total(self) -> float:
         faturamento_total = self.__faturamento_producao +\
-                            self.__faturamento_servicos +\
-                            self.__faturamento_vendas
+            self.__faturamento_servicos + self.__faturamento_vendas
         return faturamento_total
 
-    def total_imposto(self) -> float:
+    def total_impostos(self) -> float:
         imposto_total = 0.0
         for imposto in self.__impostos:
             if isinstance(imposto, IPI):
-                imposto_total += (imposto.calcula_aliquota()/100) *\
+                imposto_total += (imposto.calcula_aliquota() / 100) * \
                     self.__faturamento_producao
             elif isinstance(imposto, ICMS):
-                imposto_total += (imposto.calcula_aliquota()/100) *\
+                imposto_total += (imposto.calcula_aliquota() / 100) * \
                     self.__faturamento_vendas
             elif isinstance(imposto, ISS):
-                imposto_total += (imposto.calcula_aliquota()/100) *\
+                imposto_total += (imposto.calcula_aliquota() / 100) * \
                     self.__faturamento_servicos
-            elif isinstance(imposto, IRPJ):
-                imposto_total += (imposto.calcula_aliquota()/100) *\
+            else:
+                imposto_total += (imposto.calcula_aliquota() / 100) * \
                     self.faturamento_total()
+        return imposto_total
 
     def set_faturamentos(self,
                          fat_servicos: float,

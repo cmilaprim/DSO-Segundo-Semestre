@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Imposto(ABC):
     @abstractmethod
-    def __init__(self, aliquota: float):
+    def __init__(self, aliquota):
         self.__aliquota = aliquota
 
     @property
